@@ -1,0 +1,35 @@
+<div class="p-grid absolute">
+  <div class="p-xl-4 p-lg-6 p-md-6 p-sm-6 p-xl-offset-4 p-offset-3">
+    <p-card class="p-shadow-10">
+      <h1>Authorization</h1>
+      <form class="p-d-flex p-flex-column p-ai-center" [formGroup]="form">
+        <div class="control">
+          <span class="p-float-label">
+            <input id="emailCtl" type="text" pInputText formControlName="email"/>
+            <label for="emailCtl">E-mail</label>
+          </span>
+        </div>
+        <div class="control">
+          <span class="p-float-label">
+            <input
+              id="passwordCtl"
+              type="password"
+              pPassword
+              formControlName="password"
+              [feedback]="false"
+            />
+            <label for="passwordCtl">Password</label>
+          </span>
+        </div>
+        <div class="switch">
+          <label for="rememberSwitch">Remember me:</label>
+          <p-inputSwitch
+            id="rememberSwitch"
+            formControlName="remember"
+          ></p-inputSwitch>
+        </div>
+        <button [disabled]="form.invalid" pButton type="button" label="Sign in" class="p-button-outlined" (click)="submit()"></button>
+      </form>
+    </p-card>
+  </div>
+</div>
