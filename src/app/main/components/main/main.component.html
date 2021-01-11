@@ -1,0 +1,9 @@
+<header>
+  <app-header [isAuth]="isAuth" (logout)="logout()"></app-header>
+</header>
+<aside>
+  <app-sidebar [isVisible]="false"></app-sidebar>
+</aside>
+<main>
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,22 @@
+::ng-deep .p-menubar {
+  .p-menubar-end {
+    margin: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+#options {
+  display: flex;
+  align-self: center;
+}
+
+#themeSwitcher {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  label {
+    margin-right: 10px;
+  }
+}

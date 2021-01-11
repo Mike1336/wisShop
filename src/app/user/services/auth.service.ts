@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ReplaySubject, BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 import { IJWTPayload, ILoginFormData, ITokens, User } from '../interfaces/auth';
@@ -19,7 +19,7 @@ export class AuthService {
 
   private _authUrl = '/auth/jwt/';
 
-  private _login$ = new ReplaySubject<void>(1);
+  private _login$ = new Subject<void>();
 
   private _checkingDataForLogin$ = new BehaviorSubject<boolean>(false);
 
@@ -50,7 +50,6 @@ export class AuthService {
 
   public login(user: ILoginFormData): void {
     const { email, password, remember } = user;
-    console.log(user);
     this._http.post(
       `${this._authUrl}create`, { email, password })
       .subscribe({
@@ -90,7 +89,6 @@ export class AuthService {
     })
       .subscribe({
         next: (response: any) => {
-          console.log(response);
           this._login$.next();
         },
         error: (error) => {
