@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SignupModule } from './signup/signup.module';
 import { SigninModule } from './signin/signin.module';
@@ -8,9 +9,14 @@ import { UserComponent } from './user.component';
 
 
 @NgModule({
-  declarations: [UserComponent],
+  declarations: [
+    UserComponent,
+  ],
   imports: [
+    // Angular
     CommonModule,
+    HttpClientModule,
+    // Own
     UserRoutingModule,
     SigninModule,
     SignupModule,

@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { ILoginFormData } from './../../../interfaces/auth';
 
 @Component({
   selector: 'signin-component',
@@ -8,6 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninComponent implements OnInit {
+
+  @Output()
+  public formSubmit = new EventEmitter<ILoginFormData>();
+
   public form: FormGroup;
 
   public emailControl = new FormControl(null, [
@@ -24,11 +30,12 @@ export class SigninComponent implements OnInit {
   constructor() { }
 
   public ngOnInit(): void {
-    this._initForm()
+    this._initForm();
   }
 
   public submit(): void {
-    console.log(this.form)
+    const { email, password, remember } = this.form.value;
+    this.formSubmit.emit({ email, password, remember });
   }
 
   private _initForm(): void {

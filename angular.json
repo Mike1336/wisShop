@@ -91,7 +91,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wisShop:build"
+            "browserTarget": "wisShop:build",
+            "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
@@ -150,5 +151,8 @@
       }
     }
   },
-  "defaultProject": "wisShop"
+  "defaultProject": "wisShop",
+  "cli": {
+    "analytics": false
+  }
 }
