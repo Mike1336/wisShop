@@ -50,10 +50,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/vela-orange/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -90,7 +91,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wisShop:build"
+            "browserTarget": "wisShop:build",
+            "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
@@ -149,5 +151,8 @@
       }
     }
   },
-  "defaultProject": "wisShop"
+  "defaultProject": "wisShop",
+  "cli": {
+    "analytics": false
+  }
 }
