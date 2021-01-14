@@ -1,6 +1,17 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
+
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -17,15 +28,40 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   public items: MenuItem[];
 
-  public checked = true;
+  public darkMode: boolean;
 
-  constructor() { }
+  @ViewChild('logo', { static: true })
+  public logoImg: ElementRef;
+
+  constructor(private _themeService: ThemeService) {}
 
   public ngOnInit(): void {
+    this._initTheme();
   }
 
   public ngOnChanges(): void {
     this._initMenu();
+  }
+  public switchTheme(darkEnabled: boolean): void {
+    darkEnabled
+    ? this._setTheme('dark')
+    : this._setTheme('light');
+  }
+
+  private _initTheme(): void {
+    this.darkMode = this._themeService.darkEnabled;
+    this._setLogo();
+  }
+
+  private _setTheme(value: string): void {
+    this._themeService.setTheme(value);
+    this._setLogo();
+  }
+
+  private _setLogo(): void {
+    this.darkMode
+    ? this.logoImg.nativeElement.src = 'assets/images/primeng-logo-light.svg'
+    : this.logoImg.nativeElement.src = 'assets/images/primeng-logo-dark.svg';
   }
 
   private _initMenu(): void {

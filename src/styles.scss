@@ -1,8 +1,8 @@
-* {
-  color: rgba(255, 255, 255, 0.87);
+*:not(span) {
+  font-family: var(--font-family);
+  color: var(--text-color);
 }
 
 body {
-  background-color: #17212f;
+  background-color: var(--surface-b);
 }
-
